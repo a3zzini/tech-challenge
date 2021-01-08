@@ -24,7 +24,7 @@
                 <td>{{ product.price }}</td>
                 <td>{{ product.category }}</td>
                 <td>
-                    <a target="_blank" v-if="product.image" :href="'http://localhost:8000/upload/'+product.image"><img v-if="product.image" width="50" :src="'http://localhost:8000/upload/'+product.image" /></a>
+                    <a target="_blank" v-if="product.image" :href="'/upload/'+product.image"><img v-if="product.image" width="50" :src="'/upload/'+product.image" /></a>
                 </td>
                 <td>
                     <div class="btn-group" role="group">
@@ -51,7 +51,7 @@
         },
         created() {
             this.axios
-            .get('http://localhost:8000/api/products')
+            .get('/api/products')
             .then(response => {
                 this.products = response.data;
             });
@@ -65,7 +65,7 @@
             },
             deleteProduct(id) {
                 this.axios
-                .delete(`http://localhost:8000/api/product/delete/${id}`)
+                .delete(`/api/product/delete/${id}`)
                 .then(response => {
                     let i = this.products.map(item => item.id).indexOf(id); // find index of your object
                     this.products.splice(i, 1)

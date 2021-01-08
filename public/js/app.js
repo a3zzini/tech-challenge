@@ -1918,13 +1918,13 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get("http://localhost:8000/api/categories/list").then(function (response) {
+    this.axios.get("/api/categories/list").then(function (response) {
       _this.categories = response.data;
     });
 
     if (this.$route.params.id) {
       this.category_id = this.$route.params.id;
-      this.axios.get("http://localhost:8000/api/category/edit/".concat(this.$route.params.id)).then(function (response) {
+      this.axios.get("/api/category/edit/".concat(this.$route.params.id)).then(function (response) {
         _this.category = response.data;
       });
     }
@@ -1937,7 +1937,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var url_ = "add";
       if (this.category_id) url_ = "update/" + this.category_id;
-      this.axios.post('http://localhost:8000/api/category/' + url_, this.category).then(function (response) {
+      this.axios.post('/api/category/' + url_, this.category).then(function (response) {
         return _this2.$router.push({
           name: 'categoryList'
         });
@@ -2003,7 +2003,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://localhost:8000/api/categories').then(function (response) {
+    this.axios.get('/api/categories').then(function (response) {
       _this.categories = response.data;
     });
   },
@@ -2011,7 +2011,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteCategory: function deleteCategory(id) {
       var _this2 = this;
 
-      this.axios["delete"]("http://localhost:8000/api/category/delete/".concat(id)).then(function (response) {
+      this.axios["delete"]("/api/category/delete/".concat(id)).then(function (response) {
         var i = _this2.categories.map(function (item) {
           return item.id;
         }).indexOf(id);
@@ -2085,15 +2085,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    // Get categories list
-    this.axios.get("http://localhost:8000/api/categories/list").then(function (response) {
+    console.log(base_url); // Get categories list
+
+    this.axios.get("/api/categories/list").then(function (response) {
       _this.categories = response.data;
     });
 
     if (this.$route.params.id) {
       // Get product info
       this.product_id = this.$route.params.id;
-      this.axios.get("http://localhost:8000/api/product/edit/".concat(this.$route.params.id)).then(function (response) {
+      this.axios.get("/api/product/edit/".concat(this.$route.params.id)).then(function (response) {
         _this.product = response.data;
       });
     }
@@ -2121,7 +2122,7 @@ __webpack_require__.r(__webpack_exports__);
         formData.append(z, this.product[z]);
       }
 
-      this.axios.post('http://localhost:8000/api/product/' + url_, formData, config).then(function (response) {
+      this.axios.post('/api/product/' + url_, formData, config).then(function (response) {
         return _this2.$router.push({
           name: 'productList'
         });
@@ -2200,7 +2201,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://localhost:8000/api/products').then(function (response) {
+    this.axios.get('/api/products').then(function (response) {
       _this.products = response.data;
     });
   },
@@ -2215,7 +2216,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteProduct: function deleteProduct(id) {
       var _this2 = this;
 
-      this.axios["delete"]("http://localhost:8000/api/product/delete/".concat(id)).then(function (response) {
+      this.axios["delete"]("/api/product/delete/".concat(id)).then(function (response) {
         var i = _this2.products.map(function (item) {
           return item.id;
         }).indexOf(id); // find index of your object
@@ -38586,8 +38587,7 @@ var render = function() {
                     {
                       attrs: {
                         target: "_blank",
-                        href:
-                          "http://localhost:8000/upload/" + _vm.product.image
+                        href: "/upload/" + _vm.product.image
                       }
                     },
                     [
@@ -38595,9 +38595,7 @@ var render = function() {
                         ? _c("img", {
                             attrs: {
                               width: "50",
-                              src:
-                                "http://localhost:8000/upload/" +
-                                _vm.product.image
+                              src: "/upload/" + _vm.product.image
                             }
                           })
                         : _vm._e()
@@ -38788,7 +38786,7 @@ var render = function() {
                     {
                       attrs: {
                         target: "_blank",
-                        href: "http://localhost:8000/upload/" + product.image
+                        href: "/upload/" + product.image
                       }
                     },
                     [
@@ -38796,8 +38794,7 @@ var render = function() {
                         ? _c("img", {
                             attrs: {
                               width: "50",
-                              src:
-                                "http://localhost:8000/upload/" + product.image
+                              src: "/upload/" + product.image
                             }
                           })
                         : _vm._e()

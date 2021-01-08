@@ -34,7 +34,7 @@
         },
         created () { 
             this.axios
-            .get(`http://localhost:8000/api/categories/list`)
+            .get(`/api/categories/list`)
             .then((response) => {
                 this.categories = response.data
             })
@@ -42,7 +42,7 @@
             if(this.$route.params.id){
                 this.category_id = this.$route.params.id
                 this.axios
-                .get(`http://localhost:8000/api/category/edit/${this.$route.params.id}`)
+                .get(`/api/category/edit/${this.$route.params.id}`)
                 .then((response) => {
                     this.category = response.data
                 })
@@ -56,7 +56,7 @@
                     url_ = "update/"+this.category_id
 
                 this.axios
-                .post('http://localhost:8000/api/category/'+url_, this.category)
+                .post('/api/category/'+url_, this.category)
                 .then(response => (
                     this.$router.push({name: 'categoryList'})
                 ))

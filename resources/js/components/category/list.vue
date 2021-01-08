@@ -38,7 +38,7 @@
         },
         created() {
             this.axios
-            .get('http://localhost:8000/api/categories')
+            .get('/api/categories')
             .then(response => {
                 this.categories = response.data;
             });
@@ -46,7 +46,7 @@
         methods: {
             deleteCategory(id) {
                 this.axios
-                .delete(`http://localhost:8000/api/category/delete/${id}`)
+                .delete(`/api/category/delete/${id}`)
                 .then(response => {
                     let i = this.categories.map(item => item.id).indexOf(id);
                     this.categories.splice(i, 1)

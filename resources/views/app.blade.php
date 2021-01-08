@@ -16,6 +16,9 @@
 <body>
 <div id="app">
 </div>
+<script>
+var base_url = "{{ env('APP_URL') }}";
+</script>
 <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 </body>
 </html>

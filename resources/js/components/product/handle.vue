@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label>Image</label>
-                        <a target="_blank" v-if="product.image" :href="'http://localhost:8000/upload/'+product.image"><img v-if="product.image" width="50" :src="'http://localhost:8000/upload/'+product.image" /></a>
+                        <a target="_blank" v-if="product.image" :href="'/upload/'+product.image"><img v-if="product.image" width="50" :src="'/upload/'+product.image" /></a>
                         <input type="file" class="form-control" v-on:change="onFileChange" name="image" accept="image/x-png,image/gif,image/jpeg"/>
                     </div>
                     <button type="submit" class="btn btn-primary">{{product_id?'Edit':'Add'}} Product</button>
@@ -48,9 +48,10 @@
         },
         created () { 
 
+        console.log(base_url);
             // Get categories list
             this.axios
-            .get(`http://localhost:8000/api/categories/list`)
+            .get(`/api/categories/list`)
             .then((response) => {
                 this.categories = response.data
             })
@@ -59,7 +60,7 @@
                 // Get product info
                 this.product_id = this.$route.params.id
                 this.axios
-                .get(`http://localhost:8000/api/product/edit/${this.$route.params.id}`)
+                .get(`/api/product/edit/${this.$route.params.id}`)
                 .then((response) => {
                     this.product = response.data
                 })
@@ -85,7 +86,7 @@
                     formData.append(z, this.product[z]);
                 }
                 this.axios
-                .post('http://localhost:8000/api/product/'+url_, formData, config)
+                .post('/api/product/'+url_, formData, config)
                 .then(response => (
                     this.$router.push({name: 'productList'})
                 ))
