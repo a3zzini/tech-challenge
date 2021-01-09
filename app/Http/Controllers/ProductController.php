@@ -16,22 +16,13 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-
-        $product = new Product([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'category_id' => $request->input('category_id'),
-        ]);
-
+        $product = new Product();
+        $requestData = $request->all();
         if($request->hasFile('image')){
-            $upload_path = public_path('upload');
-            $file_name = $request->image->getClientOriginalName();
-            $generated_new_name = uniqid() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move($upload_path, $generated_new_name);
-            $product->image = $generated_new_name;
+            $generated_new_name = $this->uploadImage($request->image);
+            $requestData['image'] = $generated_new_name;
         }
-        $product->save();
+        $product->insert($requestData);
 
         return response()->json('The product successfully added');
     }
@@ -51,19 +42,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
-        $product->price = $request->input('price');
-        $product->category_id = $request->input('category_id');
-
+        $requestData = $request->all();
         if($request->hasFile('image')){
-            $upload_path = public_path('upload');
-            $file_name = $request->image->getClientOriginalName();
-            $generated_new_name = uniqid() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move($upload_path, $generated_new_name);
-            $product->image = $generated_new_name;
+            $generated_new_name = $this->uploadImage($request->image);
+            $requestData['image'] = $generated_new_name;
         }
-        $product->save();
+        $product->update($requestData);
         return response()->json('The product successfully updated');
     }
 
@@ -74,4 +58,16 @@ class ProductController extends Controller
 
         return response()->json('The product successfully deleted');
     }
+
+/** HELPERS */
+
+    private function uploadImage($image){
+        $upload_path = public_path('upload');
+        $file_name = $image->getClientOriginalName();
+        $generated_new_name = uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->move($upload_path, $generated_new_name);
+        return $generated_new_name;
+    }
+
+/** END HELPERS  */
 }

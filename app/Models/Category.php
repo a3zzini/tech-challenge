@@ -9,4 +9,9 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'parent_category_id'];
+    
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class);
+    }
 }

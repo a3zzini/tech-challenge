@@ -2073,6 +2073,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2116,10 +2117,10 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       var formData = new FormData();
-      formData.append('image', this.image);
+      if (this.image) formData.append('image', this.image);
 
       for (var z in this.product) {
-        formData.append(z, this.product[z]);
+        if (this.product[z]) formData.append(z, this.product[z]);
       }
 
       this.axios.post('/api/product/' + url_, formData, config).then(function (response) {
@@ -38481,7 +38482,7 @@ var render = function() {
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Description")]),
               _vm._v(" "),
-              _c("input", {
+              _c("textarea", {
                 directives: [
                   {
                     name: "model",
@@ -38491,7 +38492,6 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
                 domProps: { value: _vm.product.description },
                 on: {
                   input: function($event) {
@@ -38517,7 +38517,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "number" },
+                attrs: { step: "0.01", type: "number" },
                 domProps: { value: _vm.product.price },
                 on: {
                   input: function($event) {

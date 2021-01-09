@@ -10,11 +10,12 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <input type="text" class="form-control" v-model="product.description">
+                        <textarea class="form-control" v-model="product.description">
+                        </textarea>
                     </div>
                     <div class="form-group">
                         <label>Price</label>
-                        <input type="number" class="form-control" v-model="product.price">
+                        <input step="0.01" type="number" class="form-control" v-model="product.price">
                     </div>
                     <div class="form-group">
                         <label>Category</label>
@@ -81,9 +82,11 @@
                     }
                 }
                 let formData = new FormData();
-                formData.append('image', this.image);
+                if(this.image)
+                    formData.append('image', this.image);
                 for (var z in this.product) {
-                    formData.append(z, this.product[z]);
+                    if(this.product[z])
+                        formData.append(z, this.product[z]);
                 }
                 this.axios
                 .post('/api/product/'+url_, formData, config)
