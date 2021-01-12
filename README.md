@@ -10,13 +10,6 @@
 
 > .env (must be created if inexisted)
 
-### Insert date by command line :
-
-```sh
-php artisan product:generate
-php artisan category:generate
-```
-
 ### Run those commandes :
 
 ```sh
@@ -28,27 +21,30 @@ php artisan category:generate
 > npm run watch (optionel)
 ```
 
-# Product List View
+## Product List View
 
 ![N|Solid](https://i.postimg.cc/y867tn52/2021-01-09-00-16-45-Next-Media-Tech-challenge-by-Ayoub-Ezzini.png)
 
-# Product Add/Edit View
+## Product Add/Edit View
 
 ![N|Solid](https://i.postimg.cc/4y1r1RJy/2021-01-09-00-18-56-Next-Media-Tech-challenge-by-Ayoub-Ezzini.png)
 
-# Category List View
+## Category List View
 
 ![N|Solid](https://i.postimg.cc/Z5XDp5rj/2021-01-09-00-19-40-Next-Media-Tech-challenge-by-Ayoub-Ezzini.png)
 
-# Category Add/Edit View
+## Category Add/Edit View
 
 ![N|Solid](https://i.postimg.cc/G2C7gggy/2021-01-09-00-19-57-Next-Media-Tech-challenge-by-Ayoub-Ezzini.png)
 
-# Product Add commande line
+
+### Insert data by command line :
+
+## Product Add commande line
 
 ![N|Solid](https://i.postimg.cc/KYN60dhk/2021-01-09-08-31-10-Window.png)
 
-# Category Add commande line
+## Category Add commande line
 
 ![N|Solid](https://i.postimg.cc/kM07RPJq/2021-01-09-08-33-34-Window.png)
 
